@@ -44532,7 +44532,7 @@ angular.module('org.nemanjan00.musictime', [])
 			url: 'http://localhost:8080/'+id
 		});
 
-		mySong.play();
+		mySong.play({onfinish:$scope.next});
 
 		playing = id;
 
