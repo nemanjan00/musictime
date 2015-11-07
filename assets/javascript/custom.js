@@ -13,9 +13,6 @@ soundManager.setup();
 http.createServer(function(request, response) {
   var file = engine.files[request.url.replace("/", "")];
 
-  // Allow CORS requests to specify arbitrary headers, e.g. 'Range',
-    // by responding to the OPTIONS preflight request with the specified
-    // origin and requested headers.
     if (request.method === 'OPTIONS' && request.headers['access-control-request-headers']) {
       response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
       response.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
@@ -52,7 +49,7 @@ http.createServer(function(request, response) {
 }).listen(8080);
 
 angular.module('org.nemanjan00.musictime', [])
-.controller("Test", function($scope, $http, $timeout){
+.controller("Player", function($scope, $http, $timeout){
 	engine = torrentStream('magnet:?xt=urn:btih:c8b34f885e7e588ad95a5ca92f758a13f7c8f67e&dn=Dubioza+kolektiv+-+Happy+Machine+%28EP%29+2014&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
 
 	$scope.songs = [];
@@ -108,6 +105,8 @@ angular.module('org.nemanjan00.musictime', [])
 		}
 
 		$scope.songs[id].active = "active";
+
+		$scope.$apply();
 
 		while(soundManager.getSoundById("song"+id) !== undefined){
 			soundManager.destroySound("song"+id);
