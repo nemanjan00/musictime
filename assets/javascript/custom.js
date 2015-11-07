@@ -13,40 +13,38 @@ var engine;
 soundManager.setup();
 
 http.createServer(function(request, response) {
-  var file = engine.files[request.url.replace("/", "")];
+	var file = engine.files[request.url.replace("/", "")];
 
-    if (request.method === 'OPTIONS' && request.headers['access-control-request-headers']) {
-      response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
-      response.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-      response.setHeader(
-          'Access-Control-Allow-Headers',
-          request.headers['access-control-request-headers'])
-      response.setHeader('Access-Control-Max-Age', '1728000')
+	if (request.method === 'OPTIONS' && request.headers['access-control-request-headers']) {
+		response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
+		response.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+		response.setHeader('Access-Control-Allow-Headers', request.headers['access-control-request-headers']);
+		response.setHeader('Access-Control-Max-Age', '1728000');
 
-      response.end()
-      return
-    }
+		response.end();
+		return
+	}
 
-    if (request.headers.origin) response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
- 
-    var range = request.headers.range;
-    range = range && rangeParser(file.length, range)[0];
-    response.setHeader('Accept-Ranges', 'bytes');
-    //response.setHeader('Content-Type', getType(file.name));
-    response.setHeader('transferMode.dlna.org', 'Streaming');
-    response.setHeader('contentFeatures.dlna.org', 'DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=017000 00000000000000000000000000');
-    if (!range) {
-      response.setHeader('Content-Length', file.length);
-      if (request.method === 'HEAD') return response.end();
-      pump(file.createReadStream(), response);
-      return;
-    }
+	if (request.headers.origin) response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
 
-    response.statusCode = 206;
-    response.setHeader('Content-Length', range.end - range.start + 1);
-    response.setHeader('Content-Range', 'bytes ' + range.start + '-' + range.end + '/' + file.length);
-    if (request.method === 'HEAD') return response.end();
-    pump(file.createReadStream(range), response);
+	var range = request.headers.range;
+	range = range && rangeParser(file.length, range)[0];
+	response.setHeader('Accept-Ranges', 'bytes');
+	//response.setHeader('Content-Type', getType(file.name));
+	response.setHeader('transferMode.dlna.org', 'Streaming');
+	response.setHeader('contentFeatures.dlna.org', 'DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=017000 00000000000000000000000000');
+	if (!range) {
+		response.setHeader('Content-Length', file.length);
+		if (request.method === 'HEAD') return response.end();
+		pump(file.createReadStream(), response);
+		return;
+	}
+
+	response.statusCode = 206;
+	response.setHeader('Content-Length', range.end - range.start + 1);
+	response.setHeader('Content-Range', 'bytes ' + range.start + '-' + range.end + '/' + file.length);
+	if (request.method === 'HEAD') return response.end();
+	pump(file.createReadStream(range), response);
   
 }).listen(8080);
 
@@ -77,11 +75,12 @@ angular.module('org.nemanjan00.musictime', [])
 	engine.listen();
 
 	$scope.safeApply = function() {
-  var phase = this.$root.$$phase;
-  if(!(phase == '$apply' || phase == '$digest')) {
-    this.$apply();
-  }
-};
+		var phase = this.$root.$$phase;
+		if(!(phase == '$apply' || phase == '$digest')) {
+			this.$apply();
+		}
+	};
+	
 	$scope.toggle = function(){
 		if(playing !== -1){
 			sound = soundManager.getSoundById("song"+playing);
