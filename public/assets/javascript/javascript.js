@@ -44443,6 +44443,8 @@ path = require('path');
 pump = require('pump');
 var rangeParser = require('range-parser');
 
+var extensions = [".mp3", ".mp4", ".ogg", ".opus", "wav"];
+
 var playing = -1;
 var engine;
 
@@ -44501,7 +44503,9 @@ angular.module('org.nemanjan00.musictime', [])
 			file.active = "";
 
 			scope.$apply(function(){
-				scope.songs.push(file);
+				if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){
+					scope.songs.push(file);
+				}
 			});
 		});
 
@@ -44510,6 +44514,12 @@ angular.module('org.nemanjan00.musictime', [])
 
 	engine.listen();
 
+	$scope.safeApply = function() {
+  var phase = this.$root.$$phase;
+  if(!(phase == '$apply' || phase == '$digest')) {
+    this.$apply();
+  }
+};
 	$scope.toggle = function(){
 		if(playing !== -1){
 			sound = soundManager.getSoundById("song"+playing);
@@ -44529,11 +44539,23 @@ angular.module('org.nemanjan00.musictime', [])
 	}
 
 	$scope.next = function(){
-		$scope.play(playing + 1);
+		if($scope.songs[playing+1] !== undefined){
+			$scope.play(playing + 1);
+		}
+		else
+		{
+			$scope.play(0);
+		}
 	}
 
 	$scope.back = function(){
-		$scope.play(playing - 1);
+		if($scope.songs[playing-1] !== undefined){
+			$scope.play(playing - 1);
+		}
+		else
+		{
+			$scope.play($scope.songs.length - 1);
+		}
 	}
 
 	$scope.play = function(id){	
@@ -44544,7 +44566,7 @@ angular.module('org.nemanjan00.musictime', [])
 
 		$scope.songs[id].active = "active";
 
-		$scope.$apply();
+		$scope.safeApply();
 
 		while(soundManager.getSoundById("song"+id) !== undefined){
 			soundManager.destroySound("song"+id);
