@@ -44473,7 +44473,7 @@ soundManager.setup({
 
 angular.module('org.nemanjan00.musictime', [])
 .controller("Test", function($scope, $http, $timeout){
-	engine = torrentStream('magnet:?xt=urn:btih:7abf2eea1e0959886d838003a39940169d040cf5&dn=PINK+FLOYD+-+Discography+2011+Remasters+%5BBubanee%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
+	engine = torrentStream('magnet:?xt=urn:btih:c8b34f885e7e588ad95a5ca92f758a13f7c8f67e&dn=Dubioza+kolektiv+-+Happy+Machine+%28EP%29+2014&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
 
 	$scope.songs = [];
 	$scope.status = "play";
