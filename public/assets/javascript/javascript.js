@@ -44441,30 +44441,52 @@ http = require('http');
 fs = require("fs");
 path = require('path');
 pump = require('pump');
+var rangeParser = require('range-parser');
 
 var playing = -1;
 var engine;
 
 soundManager.setup();
 
-http.createServer(function(req, res) {
-  var file = engine.files[req.url.replace("/", "")];
+http.createServer(function(request, response) {
+  var file = engine.files[request.url.replace("/", "")];
 
-  console.log('filename:', file.name);
-  var stream = file.createReadStream();
+  // Allow CORS requests to specify arbitrary headers, e.g. 'Range',
+    // by responding to the OPTIONS preflight request with the specified
+    // origin and requested headers.
+    if (request.method === 'OPTIONS' && request.headers['access-control-request-headers']) {
+      response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
+      response.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+      response.setHeader(
+          'Access-Control-Allow-Headers',
+          request.headers['access-control-request-headers'])
+      response.setHeader('Access-Control-Max-Age', '1728000')
 
-  res.setHeader('Accept-Ranges', 'bytes');
-  res.setHeader('transferMode.dlna.org', 'Streaming');
-  res.setHeader('contentFeatures.dlna.org', 'DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=017000 00000000000000000000000000');
+      response.end()
+      return
+    }
 
-  pump(stream, res);
+    if (request.headers.origin) response.setHeader('Access-Control-Allow-Origin', request.headers.origin)
+ 
+    var range = request.headers.range;
+    range = range && rangeParser(file.length, range)[0];
+    response.setHeader('Accept-Ranges', 'bytes');
+    //response.setHeader('Content-Type', getType(file.name));
+    response.setHeader('transferMode.dlna.org', 'Streaming');
+    response.setHeader('contentFeatures.dlna.org', 'DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=017000 00000000000000000000000000');
+    if (!range) {
+      response.setHeader('Content-Length', file.length);
+      if (request.method === 'HEAD') return response.end();
+      pump(file.createReadStream(), response);
+      return;
+    }
+
+    response.statusCode = 206;
+    response.setHeader('Content-Length', range.end - range.start + 1);
+    response.setHeader('Content-Range', 'bytes ' + range.start + '-' + range.end + '/' + file.length);
+    if (request.method === 'HEAD') return response.end();
+    pump(file.createReadStream(range), response);
   
-  // This catches any errors that happen while creating the readable stream (usually invalid names)
-  stream.on('error', function(err) {
-    console.log(err);
-
-    res.end(err);
-  });
 }).listen(8080);
 
 angular.module('org.nemanjan00.musictime', [])
