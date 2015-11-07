@@ -4,10 +4,7 @@ fs = require("fs");
 path = require('path');
 
 var playing = -1;
-
 var engine;
-
-var mySong = 0;
 
 http.createServer(function(req, res) {
   var file = engine.files[req.url.replace("/", "")];
@@ -41,13 +38,13 @@ angular.module('org.nemanjan00.musictime', [])
 	engine = torrentStream('magnet:?xt=urn:btih:7abf2eea1e0959886d838003a39940169d040cf5&dn=PINK+FLOYD+-+Discography+2011+Remasters+%5BBubanee%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
 
 	$scope.songs = [];
+	$scope.status = "play";
+
 
 	engine.on('ready', function() {
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
 		
-		engine.files.forEach(function(file) {
-			file.select();
-		
+		engine.files.forEach(function(file) {	
 			file.active = "";
 
 			scope.$apply(function(){
@@ -64,12 +61,24 @@ angular.module('org.nemanjan00.musictime', [])
 
 			if(sound.paused === true){
 				sound.resume();
+
+				$scope.status = "pause";
 			}
 			else
 			{
 				sound.pause();
+
+				$scope.status = "play";
 			}
 		}	
+	}
+
+	$scope.next = function(){
+		$scope.play(playing + 1);
+	}
+
+	$scope.before = function(){
+		$scope.play(playing - 1);
 	}
 
 	$scope.play = function(id){	
@@ -88,5 +97,11 @@ angular.module('org.nemanjan00.musictime', [])
 		mySong.play();
 
 		playing = id;
+
+		if($scope.songs[playing+1] !== undefined){
+			$scope.songs[playing+1].select();
+		}
+
+		$scope.status = "pause";
 	};
 });

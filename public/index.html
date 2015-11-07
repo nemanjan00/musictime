@@ -47,10 +47,20 @@
 
       <footer class="toolbar toolbar-footer">
         <div class="toolbar-actions">
-          <button class="btn btn-default" ng-click="toggle()">
-			  <span class="icon icon-play"></span> Play/Pause
+
+          <button class="btn btn-default" ng-click="back()">
+			  <span class="icon icon-left-dir"></span>
           </button>
-        </div>
+		
+          <button class="btn btn-default" ng-click="toggle()">
+			  <span class="icon icon-{{status}}"></span>
+          </button>
+
+          <button class="btn btn-default" ng-click="next()">
+			  <span class="icon icon-right-dir"></span>
+          </button>
+		
+		</div>
       </footer>
 
     </div>
