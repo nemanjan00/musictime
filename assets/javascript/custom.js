@@ -2,9 +2,12 @@ torrentStream = require("torrent-stream");
 http = require('http');
 fs = require("fs");
 path = require('path');
+pump = require('pump');
 
 var playing = -1;
 var engine;
+
+soundManager.setup();
 
 http.createServer(function(req, res) {
   var file = engine.files[req.url.replace("/", "")];
@@ -12,34 +15,19 @@ http.createServer(function(req, res) {
   console.log('filename:', file.name);
   var stream = file.createReadStream();
 
-  /*// This will wait until we know the readable stream is actually valid before piping
-  stream.on('open', function () {
-    // This just pipes the read stream to the response object (which goes to the client)
-    stream.pipe(res);
-  });*/
+  res.setHeader('Accept-Ranges', 'bytes');
+  res.setHeader('transferMode.dlna.org', 'Streaming');
+  res.setHeader('contentFeatures.dlna.org', 'DLNA.ORG_OP=01;DLNA.ORG_CI=0;DLNA.ORG_FLAGS=017000 00000000000000000000000000');
 
-
-  // This will wait until we know the readable stream is actually valid before piping
-  stream.on('readable', function () {
-    // This just pipes the read stream to the response object (which goes to the client)
-    res.write(stream.read());
-  });
-
-
+  pump(stream, res);
+  
   // This catches any errors that happen while creating the readable stream (usually invalid names)
   stream.on('error', function(err) {
+    console.log(err);
+
     res.end(err);
   });
 }).listen(8080);
-
-soundManager.setup({
-  onready: function() {
-    var mySound = soundManager.createSound({
-      id: 'aSound',
-      url: 'http://localhost:8080/0'
-    });
-  }
-});
 
 angular.module('org.nemanjan00.musictime', [])
 .controller("Test", function($scope, $http, $timeout){
@@ -87,7 +75,7 @@ angular.module('org.nemanjan00.musictime', [])
 		$scope.play(playing + 1);
 	}
 
-	$scope.before = function(){
+	$scope.back = function(){
 		$scope.play(playing - 1);
 	}
 
@@ -98,6 +86,10 @@ angular.module('org.nemanjan00.musictime', [])
 		}
 
 		$scope.songs[id].active = "active";
+
+		while(soundManager.getSoundById("song"+id) !== undefined){
+			soundManager.destroySound("song"+id);
+		}
 
 		mySong = soundManager.createSound({
 			id: "song"+id,

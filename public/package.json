@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "main": "main.js",
   "dependencies": {
+    "pump": "^1.0.1",
+    "thepiratebay": "^0.2.5",
     "torrent-stream": "^1.0.0"
   }
 }
