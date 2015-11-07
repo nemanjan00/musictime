@@ -12,15 +12,23 @@ http.createServer(function(req, res) {
   console.log('filename:', file.name);
   var stream = file.createReadStream();
 
-  // This will wait until we know the readable stream is actually valid before piping
+  /*// This will wait until we know the readable stream is actually valid before piping
   stream.on('open', function () {
     // This just pipes the read stream to the response object (which goes to the client)
     stream.pipe(res);
+  });*/
+
+
+  // This will wait until we know the readable stream is actually valid before piping
+  stream.on('readable', function () {
+    // This just pipes the read stream to the response object (which goes to the client)
+    res.write(stream.read());
   });
 
+
   // This catches any errors that happen while creating the readable stream (usually invalid names)
-  stream.on('readable', function(err) {
-    res.write(stream.read());
+  stream.on('error', function(err) {
+    res.end(err);
   });
 }).listen(8080);
 
@@ -51,6 +59,8 @@ angular.module('org.nemanjan00.musictime', [])
 				scope.songs.push(file);
 			});
 		});
+
+		$timeout(function () { $scope.play(0); } , 0);
 	});
 
 	engine.listen();
