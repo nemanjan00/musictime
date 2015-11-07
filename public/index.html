@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="org.nemanjan00.musictime">
+  <head>
+    <title>MusicTime</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="./assets/stylesheets/stylesheet.css">
+  </head>
+
+  <body>
+    <!-- Wrap your entire app inside .window -->
+    <div class="window" ng-controller="Test">
+
+      <header class="toolbar toolbar-header">
+        <h1 class="title">MusicTime</h1>
+
+        <div class="toolbar-actions">
+          <div class="btn-group">
+            <button class="btn btn-default">
+              <span class="icon icon-home"></span>
+            </button>
+            <button class="btn btn-default active">
+              <span class="icon icon-menu"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="window-content">
+        <div class="pane-group">
+          <div class="pane">
+
+            <ul class="list-group">
+              <li class="list-group-header">
+                <input class="form-control" type="text" placeholder="Search for someone" ng-model="songname">
+              </li>
+			  <li class="list-group-item {{song.active}}" ng-repeat="(key, song) in songs | filter:songname" ng-click="play(key)">
+                <div class="media-body">
+                  <strong>{{song.name}}</strong>
+                  <p>{{song.path}}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <footer class="toolbar toolbar-footer">
+        <div class="toolbar-actions">
+          <button class="btn btn-default" ng-click="toggle()">
+			  <span class="icon icon-play"></span> Play/Pause
+          </button>
+        </div>
+      </footer>
+
+    </div>
+  
+	<!-- Electron Javascript -->
+	<script src="./assets/javascript/javascript.js" charset="utf-8"></script>
+    <script src="http://localhost:35729/livereload.js"></script>
+  </body>
+</html>

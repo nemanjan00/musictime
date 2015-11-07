@@ -1,0 +1,26 @@
+{
+  "name": "realtime",
+  "version": "0.0.0",
+  "authors": [
+    "nemanjan00 <nemanjan00@gmail.com>"
+  ],
+  "description": "Just some crazy realtime stuff",
+  "license": "MIT",
+  "homepage": "https://nemanjan00.org/",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.7",
+    "angular-ui-router": "~0.2.15",
+    "fontawesome": "~4.4.0",
+    "SoundManager2": "soundmanager#*",
+    "angular": "~1.4.7",
+    "photon": "~0.1.2-alpha",
+    "jquery": "~2.1.4"
+  }
+}
