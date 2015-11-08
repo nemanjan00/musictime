@@ -100,3 +100,5 @@ cd ..
 
 rm -rf ./darwin/
 
+asar p ../public/ ./app.asar
+

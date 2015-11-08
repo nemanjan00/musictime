@@ -22,6 +22,34 @@ function pad(num, size) {
 	return s;
 }
 
+
+
+
+
+
+var https = require('https');
+
+https.get('https://musictime-updater.dokku.nemanjan00.org/', function(res) {
+  console.log("statusCode: ", res.statusCode);
+  console.log("headers: ", res.headers);
+
+  res.on('data', function(d) {
+    process.stdout.write(d);
+  });
+
+}).on('error', function(e) {
+  console.error(e);
+});
+
+
+
+
+
+
+
+
+
+
 soundManager.setup();
 
 http.createServer(function(request, response) {
