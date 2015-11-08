@@ -80,3 +80,23 @@ cd ..
 
 rm -rf ./linux-i32/
 
+# Build OS X
+
+rm -rf darwin
+mkdir darwin
+
+if [ ! -f ./electron-v0.34.3-darwin-x64.zip ]; then
+    wget https://github.com/atom/electron/releases/download/v0.34.3/electron-v0.34.3-darwin-x64.zip
+fi
+
+unzip ./electron-v0.34.3-darwin-x64.zip -d ./darwin
+
+asar p ../public/ ./darwin/Electron.app/Contents/Resources/app.asar
+
+cd darwin
+rm ../musictime-darwin.zip
+zip ../musictime-darwin.zip -r ./
+cd ..
+
+rm -rf ./darwin/
+
