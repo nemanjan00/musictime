@@ -11,6 +11,8 @@ tpb = require("thepiratebay");
 
 var extensions = [".mp3", ".mp4", ".ogg", ".opus", "wav"];
 
+var volume = 100;
+
 var playing = -1;
 var engine;
 
@@ -68,6 +70,7 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 
 	$scope.volume = {};
 	$scope.volume.templateurl = "volumetemplate.html";
+	$scope.volume.value = volume;
 
 	$scope.songs = [];
 	$scope.status = "play";
@@ -177,6 +180,12 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 		$scope.status = "pause";
 	};
 
+	$scope.setvolume = function(){
+		soundManager.setVolume($scope.volume.value);
+
+		volume = $scope.volume.value;
+	}
+
 	$scope.repeat = function(){
 		$scope.slider = soundManager.getSoundById("song"+playing).position / soundManager.getSoundById("song"+playing).duration * 100;	
 
@@ -189,6 +198,7 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 
 		$scope.total.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60), 2);
 		$scope.total.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).duration/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60)*60, 2);
+
 	};
 
 	$scope.move = function(){

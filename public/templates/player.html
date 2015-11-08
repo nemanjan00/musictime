@@ -56,7 +56,7 @@
 
 						<script type="text/ng-template" id="volumetemplate.html">
 							<div>
-								<span orientation="vertical" tooltip="hide" slider ng-model="slider" max="100" ng-change="move()"></span>
+								<span orientation="vertical" slider ng-model="volume.value" reversed="true" max="100" ng-change="setvolume()"></span>
 							</div>
 						</script>
 
@@ -65,7 +65,7 @@
 					<div class="move-right">						
 						<p>{{current.mins}}:{{current.secs}} / {{total.mins}}:{{total.secs}}</p>
 
-						<span tooltip="hide" slider class="sliders" ng-model="slider" max="100" ng-change="move()"></span>
+						<span slider class="sliders" ng-model="slider" max="100" ng-change="move()"></span>
 					</div>
 				</div>
 			</footer>
