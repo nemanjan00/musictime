@@ -14,3 +14,5 @@ deploy:
     - "./build/musictime-windows-x64.zip"
   on:
     repo: nemanjan00/musictime
+    all_branches: true
+
