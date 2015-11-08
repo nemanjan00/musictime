@@ -32,7 +32,7 @@
 
 						<ul class="list-group">
 							<li class="list-group-header">
-								<input class="form-control" type="text" placeholder="Search for someone" ng-model="songname">
+								<input class="form-control" type="text" placeholder="Type to search... " ng-model="songname">
 							</li>
 							<li class="list-group-item {{song.active}}" ng-repeat="(key, song) in songs | filter:songname" ng-click="play(key)">
 								<div class="media-body">
@@ -62,7 +62,7 @@
 					</div>
 
 					<div class="move-right">
-						<p>{{current.mins}}:{{current.secs}}</p>
+						<p>{{current.mins}}:{{current.secs}} / {{total.mins}}:{{total.secs}}</p>
 
 						<span tooltip="hide" slider class="sliders" ng-model="slider" max="100" ng-change="move()"></span>
 					</div>

@@ -163,6 +163,11 @@ angular.module('org.nemanjan00.musictime', ['ui.bootstrap-slider'])
 
 		$scope.current.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60), 2);
 		$scope.current.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).position/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60)*60, 2);
+
+		$scope.total = {};
+
+		$scope.total.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60), 2);
+		$scope.total.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).duration/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60)*60, 2);
 	};
 
 	$scope.move = function(){
