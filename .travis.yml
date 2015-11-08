@@ -19,4 +19,5 @@ deploy:
   on:
     repo: nemanjan00/musictime
     all_branches: true
+    tags: true
 
