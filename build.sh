@@ -1,3 +1,9 @@
+cd ./public
+
+npm install
+
+cd ..
+
 mkdir -p ./build
 
 cd ./build
