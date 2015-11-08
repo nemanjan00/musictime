@@ -1,4 +1,18 @@
 script:
-    - npm install asar -g
-    - ./build.sh
-
+- npm install asar -g
+- "./build.sh"
+deploy:
+  provider: releases
+  user: nemanjan00
+  password:
+    secure: b37WQ5eY5hFmM/VAYOroKHwm8/9bPgKwpoorEf/jOkz8qBLsJF9GIsBc93cRsBNHvkVw+qn+vCbW1mesvu3Vo91dzYBCgOaY/s3rU13Px1A5sUDm3dOEi9MyO7mYBreBouch1vwsy0c+cY3W+l9KezoQo/h15jkcP8Gu4d3NP3jQf3vouKGUXf7eKj+Ra+K/m5U68vDJ7elVuFlsw0Rmq4xep+94fw+YB/IvVUHt1eMTR8c/R7zS6yhB8rvDDxQknm91AV+xyN6gcK3BI7PejzmlmVoq00928yny3tMi84UeifrS+G7B2QOFjrlPEtqWxFx5E+xZWaPZiIOomCqGG7sQgNTzECQMUvUHbMrQkXpcjI/1iP6r2+xlj5fQNzJJG5Bt9FYwK4xaFh3GE3wO5cb7b89XOyeyzOZvttIfPiNGLABX3O9EQXiQ5EZ9cKmFJ6AANWXPAVRRGYx3PjnwCWGk6TLTy87yOHVsdyq4RNAQx06huwqvkdnFJAnmh0tQhdxmm4zFGaUwWNMq3r6VDBxsJZB6GI8k+NV9mjYWDkUl3Akj9+hDWu+1RR0B8+15L/qtixaMFTVpvOB97YqFoFlvYDUNvu+Gx6lLxxIq+XrwGdoB5uLH2QwtDB7XCq1LY8GhjcBoIoH2XG0I6KlSuptG42uIOa7ghbJmoMuLCyY=
+  file: 
+      - app.asar
+      - musictime-darwin.zip
+      - musictime-linux-ia32.zip
+      - musictime-linux-x64.zip
+      - musictime-windows-ia32.zip
+      - usictime-windows-x64.zip
+  skip_cleanup: true
+  on:
+    tags: true
