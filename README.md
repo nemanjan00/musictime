@@ -33,7 +33,7 @@ It is available under:
 
 - Nemanja Nedeljković [nemanjan00@gmail.com]
 
-Testing: 
+# Testing: 
 
 - Sava Đorđević (OS X)
 
