@@ -66,13 +66,14 @@ angular.module('org.nemanjan00.musictime', ['ui.bootstrap-slider'])
 	engine.on('ready', function() {
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
 		
-		engine.files.forEach(function(file) {	
+		engine.files.forEach(function(file, id) {	
 			file.active = "";
+			file.id = id;
 
 			scope.$apply(function(){
-				//if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){
+				if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){
 					scope.songs.push(file);
-				//}
+				}
 			});
 		});
 
@@ -142,7 +143,7 @@ angular.module('org.nemanjan00.musictime', ['ui.bootstrap-slider'])
 
 		mySong = soundManager.createSound({
 			id: "song"+id,
-			url: 'http://localhost:8080/'+id
+			url: 'http://localhost:8080/'+$scope.songs[id].id
 		});
 
 		mySong.play({onfinish:$scope.next});

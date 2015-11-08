@@ -34,7 +34,7 @@
 							<li class="list-group-header">
 								<input class="form-control" type="text" placeholder="Type to search... " ng-model="songname">
 							</li>
-							<li class="list-group-item {{song.active}}" ng-repeat="(key, song) in songs | filter:songname" ng-click="play(key)">
+							<li class="list-group-item {{song.active}}" ng-repeat="(key, song) in songs | orderBy:'path' | filter:songname" ng-click="play(key)">
 								<div class="media-body">
 									<strong>{{song.name}}</strong>
 									<p>{{song.path}}</p>
