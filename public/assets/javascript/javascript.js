@@ -47116,9 +47116,9 @@ angular.module('org.nemanjan00.musictime', ['ui.bootstrap-slider'])
 			file.active = "";
 
 			scope.$apply(function(){
-				if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){
+				//if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){
 					scope.songs.push(file);
-				}
+				//}
 			});
 		});
 
