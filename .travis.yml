@@ -3,16 +3,14 @@ script:
 - "./build.sh"
 deploy:
   provider: releases
-  user: nemanjan00
-  password:
-    secure: gncQP4Q7ewKXznhPB4yymmQCrTnuKMAY4+LMrNINmhgZ+8YakYlwUoyB36xdqtVfEFrPw98hirmXDsJlaf/FvXwy08JVxgZe6GskCsUoIgiQ5gfoXnnDT6tytbD4GMy87Sq5txGduLr+nGt2utnGilxfOn+VH96diVH+PW+MFJNb8OYrydehFRxvZf2ICLMokw/QN1NRLJ1vcKM3F6TtOq2HeLsXI6oPeYwuBIxHlOT6frBKSul0a2gsqqIJAsvXt0Qo/YNYc6teL7+Dn8qmrpJ2rpl6De1nAa4wtSfli1ytxGtVOxSpBNpsmPNDrA4PplBLlWdtf/cvzGS9VzRTt5yKgRb+tzFImj09nzg2yS1mCN+gbX0orp9S1K9ZpWHyBh9lM5cl/FrxfQVCYDSRopJlmNlrfDI/OAZqNE0LxF0ytljF7Kj0+7Gsx1U4Mde++15TveMvxrTIKptmv6rH56wOnsR6pgMSS3wMv6ROAMl27SkUanIDJWWpDqJ4HVQbk2qTZOCgYDKK3bJykVe7Z1GKc/6VxfOd4sgVDWR8vq8Mhuj8hlg4RwDHcZJioN283b85chCTbHLp7d/viYEp2+FMPvAz3CY+sppyiwcm30Us0n2nCYsqUWj7VTiRWM/59zR//66KPJuF9FH0FtxfDA+l5P6ClwduJ+OpXWJzCKU=
-  file:
-  - app.asar
-  - musictime-darwin.zip
-  - musictime-linux-ia32.zip
-  - musictime-linux-x64.zip
-  - musictime-windows-ia32.zip
-  - usictime-windows-x64.zip
-  skip_cleanup: true
+  api_key:
+    secure: X0VxBBXpeb1v1qDQG4mvAaROh3Ah9IUAK5UqJMQAhs7EmC1KNpwxjN1S540GlC4LINTX6uWSpAZ1/jzwo4qHVt7f3jfrPsCBS/FtwVneSzJeWn0P/wo+XKbqLvsRslYXcbiheVrjlPi0kgE6sdUNipEnTk3HJ1XhFS16mN416oZZ9gWP4iuJukrnopHnIrWt+9BuSAwwn6vdfI+mzM290weNYnwFQY3r++UqCC0b+bOrMCFfhGhys9va7jiW7ZGj96yeHRtQvRsxLGyHodSMH+Lr7c7u1O4ciD8NyFn1+NxeR2tIDZSVxRjzA+UUOZj0XggChLhCX7sN6zjAy+B/F9SPxU/Nnkrb51C2Z52cksHBRkqg/iv5SNH4IpHBPt3fYpGBsHrivQPurbOWPli8j1MA97aTlOnjUZNirZ9pV4/Mqhr45eE4cHdtKZMwGUcebUIhUek5pdgH99HOJwkN2AV19qIezgsIPI3RlYi5rq+ZQMgmzT3BeX4ZXjlGCWyRuj+uGNqpZXaEnCkFbR9gQXWIPyI4VhaHrEO1uWojXIU6jhQ+HMV/Z4zPYPGW5fGueuo9XE+Fto1u2zK1747pnGcRFlsinOurYJWCpPlowVVZjRQ1NKA3k2n0WJEmr5Zxst3KX+3xA1ytzVZO4Qr/ZgWLS093+eXhel5uS023caI=
+  file: 
+    - "./build/app.asar"
+    - "./build/musictime-darwin.zip"
+    - "./build/musictime-linux-ia32.zip"
+    - "./build/musictime-linux-x64.zip"
+    - "./build/musictime-windows-ia32.zip"
+    - "./build/musictime-windows-x64.zip"
   on:
-    tags: true
+    repo: nemanjan00/musictime
