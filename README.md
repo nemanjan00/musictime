@@ -1,6 +1,7 @@
 # musictime
 
 [![Build Status](https://travis-ci.org/nemanjan00/musictime.svg?branch=master)](https://travis-ci.org/nemanjan00/musictime)
+[![devDependency Status](https://david-dm.org/nemanjan00/musictime/dev-status.svg)](https://david-dm.org/nemanjan00/musictime#info=devDependencies)
 
 musictime is music player intended for artists to share their music with audience, over The Pirate Bay. 
 
