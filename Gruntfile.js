@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 					'./assets/javascript/fix1.js',
 					'./bower_components/bootstrap/dist/js/bootstrap.js',
 					'./bower_components/angular/angular.js',
+					'./bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
 					'./bower_components/SoundManager2/script/soundmanager2.js',
 					'./bower_components/angular-bootstrap-slider/slider.js',
 					'./assets/javascript/custom.js'

@@ -34,7 +34,7 @@
 							<li class="list-group-header">
 								<input class="form-control" type="text" placeholder="Type to search... " ng-model="songname">
 							</li>
-							<li class="list-group-item {{song.active}}" ng-repeat="(key, song) in songs | orderBy:'path' | filter:songname" ng-click="play(key)">
+							<li class="list-group-item {{song.active}}" ng-repeat="song in songs | orderBy:'path' | filter:songname" ng-click="play(song.fid)">
 								<div class="media-body">
 									<strong>{{song.name}}</strong>
 									<p>{{song.path}}</p>
@@ -59,9 +59,20 @@
 						<button class="btn btn-default" ng-click="next()">
 							<span class="icon icon-right-dir"></span>
 						</button>
+
+						<button uib-popover-template="volume.templateurl" type="button" class="btn btn-default">
+							<span class="glyphicon glyphicon-volume-up"></span>
+						</button>
+
+						<script type="text/ng-template" id="volumetemplate.html">
+							<div>
+								<span orientation="vertical" tooltip="hide" slider ng-model="slider" max="100" ng-change="move()"></span>
+							</div>
+						</script>
+
 					</div>
 
-					<div class="move-right">
+					<div class="move-right">						
 						<p>{{current.mins}}:{{current.secs}} / {{total.mins}}:{{total.secs}}</p>
 
 						<span tooltip="hide" slider class="sliders" ng-model="slider" max="100" ng-change="move()"></span>
