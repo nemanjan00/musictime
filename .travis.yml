@@ -1,3 +1,4 @@
 script:
+    - npm install asar -g
     - ./build.sh
 
