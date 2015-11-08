@@ -17,20 +17,15 @@ It is available under:
 # Usage
 
 1) Open electron/electron.exe/Electron.app
-
 2) Type search query
-
 3) Press enter
-
 4) Pick artist
-
 5) Enjoy
 
 # To do
 
 - Playlist
 - Save music offline
-- Fix volume slider
 - Create exeption handling
 - Marketing
 
@@ -41,20 +36,4 @@ It is available under:
 Testing: 
 
 - Sava Đorđević (OS X)
-
-# Dependencyes: 
-
-## UI
-
-- Photon
-- Bootstrap
-- Angular
-- Angular UI Bootstrap
-- Angular Slider
-- Bootstrap Slider
-- jQuery
-
-## Backend
-
-- torrent-stream
 
