@@ -1,0 +1,40 @@
+
+		<!-- Wrap your entire app inside .window -->
+		<div class="window" ng-controller="Search">
+
+			<header class="toolbar toolbar-header">
+				<h1 class="title">MusicTime</h1>
+
+				<div class="toolbar-actions">
+					<div class="btn-group">
+						<button class="btn btn-default active">
+							<span class="icon icon-home"></span>
+						</button>
+						<button class="btn btn-default">
+							<span class="icon icon-menu"></span>
+						</button>
+					</div>
+				</div>
+			</header>
+
+			<div class="window-content">
+				<div class="pane-group">
+					<div class="pane">
+
+						<ul class="list-group">
+							<li class="list-group-header">
+								<form ng-submit="search()">
+									<input class="form-control" type="text" placeholder="Type to search... " ng-model="songname">
+								</form>
+							</li>
+							<li class="list-group-item" ng-repeat="result in results"  ng-click="play(result.magnetLink)">
+								<div class="media-body">
+									<strong>{{result.name}}</strong>
+									<p>{{song.path}}</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>

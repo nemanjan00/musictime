@@ -5,6 +5,10 @@ path = require('path');
 pump = require('pump');
 var rangeParser = require('range-parser');
 
+var magnet = "";
+
+tpb = require("thepiratebay");
+
 var extensions = [".mp3", ".mp4", ".ogg", ".opus", "wav"];
 
 var playing = -1;
@@ -55,8 +59,10 @@ http.createServer(function(request, response) {
 }).listen(8080);
 
 angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
-.controller("Player", function($scope, $interval, $timeout){
-	engine = torrentStream('magnet:?xt=urn:btih:082d35c4a8a920eeb0c40fcd48f31ba87c89e14d&dn=Pink+Floyd+-+The+Dark+Side+Of+The+Moon+320kbps+CbR+Mp3+%5BTuGAZx%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
+.controller("Player", function($scope, $interval, $timeout, $location){
+	console.log(magnet);
+	
+	engine = torrentStream(magnet);
 
 	$('.volume').popover({html: true});
 
@@ -72,7 +78,7 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
 
 		var files = engine.files;
-		files = files.sort(function(a, b){return a.path.localeCompare(b.path);});
+		//files = files.sort(function(a, b){return a.path.localeCompare(b.path);});
 
 		console.log(files[0].name);
 
@@ -91,6 +97,10 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	});
 
 	engine.listen();
+
+	$scope.gohome = function() {	
+		$location.path('/app/search');
+	}
 
 	$scope.safeApply = function() {
 		var phase = this.$root.$$phase;
@@ -187,4 +197,35 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	};
 
 	$interval($scope.repeat, 1000);
+})
+
+.controller("Search", function($scope, $interval, $timeout, $location){
+	$scope.safeApply = function() {
+		var phase = this.$root.$$phase;
+		if(!(phase == '$apply' || phase == '$digest')) {
+			this.$apply();
+		}
+	};
+
+	$scope.search = function () {
+		tpb.search($scope.songname, {
+			category: '101'
+		}).then(function(results){
+			$scope.results = results;
+			console.log(results);
+
+			$scope.safeApply();
+		}).catch(function(err){
+			console.log(err);
+		});
+	}
+
+	$scope.play = function (torrent) {
+		magnet = torrent;
+
+		console.log(magnet);
+
+		$location.path('/app/player');
+	}
 });
+

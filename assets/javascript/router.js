@@ -15,7 +15,16 @@ angular.module('org.nemanjan00.musictime', ['ui.router', 'org.nemanjan00.musicti
 					templateUrl: "templates/player.html",
 				}
 			}
+		})
+		
+		.state('app.search', {
+			url: "/search",
+			views: {
+				'menuContent' :{
+					templateUrl: "templates/search.html",
+				}
+			}
 		});
 
-	$urlRouterProvider.otherwise('/app/player');
+	$urlRouterProvider.otherwise('/app/search');
 });
