@@ -21,6 +21,7 @@
     "SoundManager2": "soundmanager#*",
     "angular": "~1.4.7",
     "photon": "~0.1.2-alpha",
-    "jquery": "~2.1.4"
+    "bootstrap": "~3.3.5",
+    "angular-bootstrap-slider": "~0.1.18"
   }
 }

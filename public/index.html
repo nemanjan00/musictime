@@ -47,19 +47,25 @@
 
 			<footer class="toolbar toolbar-footer">
 				<div class="toolbar-actions">
-
-					<button class="btn btn-default" ng-click="back()">
-						<span class="icon icon-left-dir"></span>
-					</button>
+					<div class="btn-group">
+						<button class="btn btn-default" ng-click="back()">
+							<span class="icon icon-left-dir"></span>
+						</button>
 		
-					<button class="btn btn-default" ng-click="toggle()">
-						<span class="icon icon-{{status}}"></span>
-					</button>
+						<button class="btn btn-default" ng-click="toggle()">
+							<span class="icon icon-{{status}}"></span>
+						</button>
 
-					<button class="btn btn-default" ng-click="next()">
-						<span class="icon icon-right-dir"></span>
-					</button>
-		
+						<button class="btn btn-default" ng-click="next()">
+							<span class="icon icon-right-dir"></span>
+						</button>
+					</div>
+
+					<div class="move-right">
+						<p>{{current.mins}}:{{current.secs}}</p>
+
+						<span tooltip="hide" slider class="sliders" ng-model="slider" max="100" ng-change="move()"></span>
+					</div>
 				</div>
 			</footer>
 

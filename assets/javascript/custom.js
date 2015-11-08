@@ -10,6 +10,12 @@ var extensions = [".mp3", ".mp4", ".ogg", ".opus", "wav"];
 var playing = -1;
 var engine;
 
+function pad(num, size) {
+	var s = num+"";
+	while (s.length < size) s = "0" + s;
+	return s;
+}
+
 soundManager.setup();
 
 http.createServer(function(request, response) {
@@ -48,13 +54,14 @@ http.createServer(function(request, response) {
   
 }).listen(8080);
 
-angular.module('org.nemanjan00.musictime', [])
-.controller("Player", function($scope, $http, $timeout){
-	engine = torrentStream('magnet:?xt=urn:btih:c8b34f885e7e588ad95a5ca92f758a13f7c8f67e&dn=Dubioza+kolektiv+-+Happy+Machine+%28EP%29+2014&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
+angular.module('org.nemanjan00.musictime', ['ui.bootstrap-slider'])
+.controller("Player", function($scope, $interval, $timeout){
+	engine = torrentStream('magnet:?xt=urn:btih:082d35c4a8a920eeb0c40fcd48f31ba87c89e14d&dn=Pink+Floyd+-+The+Dark+Side+Of+The+Moon+320kbps+CbR+Mp3+%5BTuGAZx%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
 
 	$scope.songs = [];
 	$scope.status = "play";
 
+	$scope.slider = "50";
 
 	engine.on('ready', function() {
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
@@ -148,4 +155,20 @@ angular.module('org.nemanjan00.musictime', [])
 
 		$scope.status = "pause";
 	};
+
+	$scope.repeat = function(){
+		$scope.slider = soundManager.getSoundById("song"+playing).position / soundManager.getSoundById("song"+playing).duration * 100;	
+
+		$scope.current = {};
+
+		$scope.current.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60), 2);
+		$scope.current.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).position/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60)*60, 2);
+	};
+
+	$scope.move = function(){
+		soundManager.getSoundById("song"+playing).setPosition($scope.slider/100*soundManager.getSoundById("song"+playing).duration);	
+		$scope.repeat();
+	};
+
+	$interval($scope.repeat, 1000);
 });
