@@ -2,7 +2,7 @@
 
 musictime is music player intended for artists to share their music with audience, over The Pirate Bay. 
 
-![Screenshot](https://raw.githubusercontent.com/nemanjan00/musictime/master/screenshots/01.png)
+![Screenshot](https://raw.githubusercontent.com/nemanjan00/musictime/master/screenshots/01.jpg)
 
 # Requirements
 
