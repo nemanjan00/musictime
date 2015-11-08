@@ -55606,33 +55606,21 @@ function pad(num, size) {
 	return s;
 }
 
-
-
-
-
+// Check for update
 
 var https = require('https');
 
-https.get('https://musictime-updater.dokku.nemanjan00.org/', function(res) {
-  console.log("statusCode: ", res.statusCode);
-  console.log("headers: ", res.headers);
-
-  res.on('data', function(d) {
-    process.stdout.write(d);
-  });
-
+https.get('https://raw.githubusercontent.com/nemanjan00/musictime/master/public/updater.json', function(res) {
+	res.on('data', function(d) {
+		var updater = require('./updater.json');
+    
+		if(JSON.parse(new Buffer(d).toString('ascii')).version != updater.version){
+			alert("Please, install update! ");
+		}
+	});
 }).on('error', function(e) {
-  console.error(e);
+	console.error(e);
 });
-
-
-
-
-
-
-
-
-
 
 soundManager.setup();
 
