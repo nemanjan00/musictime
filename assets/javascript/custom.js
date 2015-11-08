@@ -54,7 +54,7 @@ http.createServer(function(request, response) {
   
 }).listen(8080);
 
-angular.module('org.nemanjan00.musictime', ['ui.bootstrap', 'ui.bootstrap-slider'])
+angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
 .controller("Player", function($scope, $interval, $timeout){
 	engine = torrentStream('magnet:?xt=urn:btih:082d35c4a8a920eeb0c40fcd48f31ba87c89e14d&dn=Pink+Floyd+-+The+Dark+Side+Of+The+Moon+320kbps+CbR+Mp3+%5BTuGAZx%5D&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Fexodus.desync.com%3A6969');
 
