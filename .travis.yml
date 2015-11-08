@@ -1,6 +1,7 @@
 script:
 - npm install asar -g
 - npm install
+- npm install bower grunt -g
 - bower install
 - grunt init
 - "./build.sh"
