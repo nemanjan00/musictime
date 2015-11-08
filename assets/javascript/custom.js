@@ -40,6 +40,8 @@ https.get('https://raw.githubusercontent.com/nemanjan00/musictime/master/public/
 
 soundManager.setup();
 
+// Create server
+
 http.createServer(function(request, response) {
 	var file = engine.files[request.url.replace("/", "")];
 
