@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/nemanjan00/musictime.svg?branch=master)](https://travis-ci.org/nemanjan00/musictime)
 [![Dependency Status](https://www.versioneye.com/user/projects/563fca164d415e00180002e8/badge.svg?style=flat)](https://www.versioneye.com/user/projects/563fca164d415e00180002e8)
+[![Code Climate](https://codeclimate.com/github/nemanjan00/musictime/badges/gpa.svg)](https://codeclimate.com/github/nemanjan00/musictime)
+[![Test Coverage](https://codeclimate.com/github/nemanjan00/musictime/badges/coverage.svg)](https://codeclimate.com/github/nemanjan00/musictime/coverage)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nemanjan00/musictime?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 musictime is music player intended for artists to share their music with audience, over The Pirate Bay. 
 
