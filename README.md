@@ -23,9 +23,13 @@ It is available under:
 # Usage
 
 1) Open electron/electron.exe/Electron.app
+
 2) Type search query
+
 3) Press enter
+
 4) Pick artist
+
 5) Enjoy
 
 # To do
