@@ -55618,13 +55618,15 @@ angular.module('org.nemanjan00.musictime', ['ui.bootstrap', 'ui.bootstrap-slider
 
 	engine.on('ready', function() {
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
-	
-		var i = 0;
 
-		engine.files.forEach(function(file, id) {	
+		var files = engine.files;
+		files = files.sort(function(a, b){return a.path.localeCompare(b.path);});
+
+		console.log(files[0].name);
+
+		files.forEach(function(file, id) {	
 			file.active = "";
 			file.id = id;
-			file.fid = i++;
 
 			scope.$apply(function(){
 				if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){

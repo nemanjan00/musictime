@@ -4,6 +4,7 @@
   "main": "main.js",
   "dependencies": {
     "pump": "^1.0.1",
+    "range-parser": "^1.0.3",
     "thepiratebay": "^0.2.5",
     "torrent-stream": "^1.0.0"
   }
