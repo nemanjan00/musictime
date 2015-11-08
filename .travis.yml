@@ -1,5 +1,8 @@
 script:
 - npm install asar -g
+- npm install
+- bower install
+- grunt init
 - "./build.sh"
 deploy:
   provider: releases
