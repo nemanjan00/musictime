@@ -55812,7 +55812,24 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	$interval($scope.repeat, 1000);
 })
 
-.controller("Search", function($scope, $interval, $timeout, $location){
+.controller("Search", function($scope, $interval, $timeout, $location, $uibModal){
+	$scope.animationsEnabled = true;
+
+	$scope.open = function () {
+		$scope.modal = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'loading.html',
+			size: "sm",
+			resolve: {
+				items: function () {
+				return $scope.items;
+				}
+			}
+		});
+	}
+
+	$scope.open();
+
 	$scope.safeApply = function() {
 		var phase = this.$root.$$phase;
 		if(!(phase == '$apply' || phase == '$digest')) {
@@ -55820,14 +55837,27 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 		}
 	};
 
+	tpb.topTorrents('101').then(function(results) {
+		console.log(results);
+
+		$scope.results = results;
+
+		$scope.safeApply();
+
+		$scope.modal.close();
+	});
+
 	$scope.search = function () {
+		$scope.open();
+		
 		tpb.search($scope.songname, {
 			category: '101'
 		}).then(function(results){
 			$scope.results = results;
-			console.log(results);
 
 			$scope.safeApply();
+
+			$scope.modal.close();	
 		}).catch(function(err){
 			console.log(err);
 		});
