@@ -55732,6 +55732,11 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	$scope.slider = "0";
 
 	engine.on('ready', function() {
+		$scope.current = {};
+		$scope.total = {};
+
+		$scope.total.mins = $scope.total.secs = $scope.current.mins = $scope.current.secs = "00";
+
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
 
 		var files = engine.files;
@@ -55839,10 +55844,7 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	}
 
 	$scope.repeat = function(){
-		$scope.slider = soundManager.getSoundById("song"+playing).position / soundManager.getSoundById("song"+playing).duration * 100;	
-
-		$scope.current = {};
-		$scope.total = {};
+		$scope.slider = Math.max(0, Math.min(100, soundManager.getSoundById("song"+playing).position / soundManager.getSoundById("song"+playing).duration * 100));	
 
 		if(soundManager.getSoundById("song"+playing) !== undefined){
 			$scope.current.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60), 2);
