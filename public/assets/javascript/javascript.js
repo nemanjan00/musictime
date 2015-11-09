@@ -55582,23 +55582,47 @@ window.soundManager = soundManager;
 
 	$urlRouterProvider.otherwise('/app/search');
 });
-;torrentStream = require("torrent-stream");
+;/* DEPENDENCY LOADING */
+
+// For streaming music
+torrentStream = require("torrent-stream");
+
+// For serving music to soundManager2
 http = require('http');
+
+// I can not remmember ATM <------ TO FILL!!!!!!!!
 fs = require("fs");
+
+// For getting file extension
 path = require('path');
+
+// For forwarding torrent in to http out
 pump = require('pump');
-var rangeParser = require('range-parser');
 
-var magnet = "";
+// For HTML5 player
+rangeParser = require('range-parser');
 
+// To forward data to player (will be depracted soon)
+magnet = "";
+
+// For search and suggestions
 tpb = require("thepiratebay");
 
+/* SETTINGS */
+
+// Extensions supported
 var extensions = [".mp3", ".mp4", ".ogg", ".opus", "wav"];
 
+// Default volume
 var volume = 100;
 
+// Persistant sound id when switching pages (soon to be moved to global controller)
 var playing = -1;
+
+// Variable to store torrent client for HTTP server and app
 var engine;
+
+// Helper native function (soon to be moved to global controller)
 
 function pad(num, size) {
 	var s = num+"";
@@ -55621,6 +55645,8 @@ https.get('https://raw.githubusercontent.com/nemanjan00/musictime/master/public/
 }).on('error', function(e) {
 	console.error(e);
 });
+
+// Init sound manager
 
 soundManager.setup();
 
