@@ -7,5 +7,8 @@
     "grunt-contrib-less": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*"
+  },
+  "dependencies": {
+    "grunt-contrib-less": "^1.1.0"
   }
 }
