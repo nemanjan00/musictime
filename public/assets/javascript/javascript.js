@@ -55663,8 +55663,23 @@ http.createServer(function(request, response) {
 }).listen(8080);
 
 angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
-.controller("Player", function($scope, $interval, $timeout, $location){
-	console.log(magnet);
+.controller("Player", function($scope, $interval, $timeout, $location, $uibModal){
+	$scope.animationsEnabled = true;
+
+	$scope.open = function () {
+		$scope.modal = $uibModal.open({
+			animation: $scope.animationsEnabled,
+			templateUrl: 'loading.html',
+			size: "sm",
+			resolve: {
+				items: function () {
+				return $scope.items;
+				}
+			}
+		});
+	}
+
+	$scope.open();
 	
 	engine = torrentStream(magnet);
 
@@ -55694,6 +55709,8 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 			scope.$apply(function(){
 				if(extensions.indexOf(path.extname(file.name.toLowerCase())) !== -1){
 					scope.songs.push(file);
+
+					scope.modal.close();
 				}
 			});
 		});
