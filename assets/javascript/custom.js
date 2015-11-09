@@ -121,8 +121,19 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 		});
 	}
 
+
+	$scope.gohome = function() {	
+		$location.path('/app/search');
+	}
+
+	if(magnet == ""){
+		$scope.gohome();
+
+		return;
+	}
+
 	$scope.open();
-	
+
 	engine = torrentStream(magnet);
 
 	$('.volume').popover({html: true});
@@ -159,10 +170,6 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	});
 
 	engine.listen();
-
-	$scope.gohome = function() {	
-		$location.path('/app/search');
-	}
 
 	$scope.safeApply = function() {
 		var phase = this.$root.$$phase;

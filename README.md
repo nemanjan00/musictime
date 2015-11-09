@@ -38,6 +38,7 @@ It is available under:
 - Save music offline
 - Create exeption handling
 - Marketing
+- Rewrite bad code
 
 # Autors: 
 
