@@ -55718,15 +55718,13 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	$scope.songs = [];
 	$scope.status = "play";
 
-	$scope.slider = "50";
+	$scope.slider = "0";
 
 	engine.on('ready', function() {
 		var scope = angular.element(document.getElementsByClassName("window")[0]).scope();
 
 		var files = engine.files;
 		//files = files.sort(function(a, b){return a.path.localeCompare(b.path);});
-
-		console.log(files[0].name);
 
 		files.forEach(function(file, id) {	
 			file.active = "";
@@ -55837,14 +55835,19 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 		$scope.slider = soundManager.getSoundById("song"+playing).position / soundManager.getSoundById("song"+playing).duration * 100;	
 
 		$scope.current = {};
-
-		$scope.current.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60), 2);
-		$scope.current.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).position/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60)*60, 2);
-
 		$scope.total = {};
 
-		$scope.total.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60), 2);
-		$scope.total.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).duration/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60)*60, 2);
+		if(soundManager.getSoundById("song"+playing) !== undefined){
+			$scope.current.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60), 2);
+			$scope.current.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).position/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).position/1000)/60)*60, 2);
+
+			$scope.total.mins = pad(Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60), 2);
+			$scope.total.secs = pad(Math.floor(soundManager.getSoundById("song"+playing).duration/1000) - Math.floor(Math.floor(soundManager.getSoundById("song"+playing).duration/1000)/60)*60, 2);
+		}
+		else
+		{
+			$scope.total.mins = $scope.total.secs = $scope.current.mins = $scope.current.secs = "00";
+		}
 	};
 
 	$scope.move = function(){
@@ -55881,8 +55884,6 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	};
 
 	tpb.topTorrents('101').then(function(results) {
-		console.log(results);
-
 		$scope.results = results;
 
 		$scope.safeApply();
@@ -55908,8 +55909,6 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 
 	$scope.play = function (torrent) {
 		magnet = torrent;
-
-		console.log(magnet);
 
 		$location.path('/app/player');
 	}
