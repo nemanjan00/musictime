@@ -55,7 +55,7 @@ https.get('https://raw.githubusercontent.com/nemanjan00/musictime/master/public/
 		var updater = require('./updater.json');
     
 		if(JSON.parse(new Buffer(d).toString('ascii')).version != updater.version){
-			alert("Please, install update! ");
+			alert("Please, install update! \nAutoupdate is not yet implemented. So you need to download new version manually. :(");
 		}
 	});
 }).on('error', function(e) {
