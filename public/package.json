@@ -1,11 +1,11 @@
 {
   "name": "electron",
   "version": "0.1.0",
-  "main": "main.js",
+  "main": "index.html",
   "dependencies": {
     "pump": "^1.0.1",
-    "range-parser": "^1.0.3",
-    "thepiratebay": "^0.2.5",
-    "torrent-stream": "^1.0.0"
+    "range-parser": "^1.2.0",
+    "thepiratebay": "^0.2.6",
+    "torrent-stream": "^1.0.3"
   }
 }

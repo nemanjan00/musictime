@@ -309,6 +309,7 @@ angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.boot
 	};
 
 	tpb.topTorrents('101').then(function(results) {
+		console.log(results);
 		$scope.results = results;
 
 		$scope.safeApply();
