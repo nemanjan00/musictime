@@ -104,7 +104,7 @@ http.createServer(function(request, response) {
   
 }).listen(8080);
 
-angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
+window.angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
 .controller("Player", function($scope, $interval, $timeout, $location, $uibModal){
 	$scope.animationsEnabled = true;
 

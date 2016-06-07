@@ -42050,7 +42050,8 @@ $provide.value("$locale", {
 
 })(window, document);
 
-!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');;/*
+!window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');var angular = window.angular;
+;/*
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
 
@@ -57252,7 +57253,7 @@ http.createServer(function(request, response) {
   
 }).listen(8080);
 
-angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
+window.angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
 .controller("Player", function($scope, $interval, $timeout, $location, $uibModal){
 	$scope.animationsEnabled = true;
 

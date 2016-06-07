@@ -1,8 +1,10 @@
 {
   "name": "electron",
   "version": "0.1.0",
-  "main": "index.html",
+  "main": "main.js",
   "dependencies": {
+    "angular": "^1.5.6",
+    "bootstrap-slider": "^7.1.0",
     "pump": "^1.0.1",
     "range-parser": "^1.2.0",
     "thepiratebay": "^0.2.6",
