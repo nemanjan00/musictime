@@ -24,7 +24,7 @@ app.on('ready', function() {
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
-  // mainWindow.openDevTools();
+  //mainWindow.openDevTools();
 
   // Hide menu bar
   mainWindow.setMenuBarVisibility(false);

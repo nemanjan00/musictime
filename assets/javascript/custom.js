@@ -102,7 +102,7 @@ http.createServer(function(request, response) {
 	if (request.method === 'HEAD') return response.end();
 	pump(file.createReadStream(range), response);
   
-}).listen(8080);
+}).listen(8086);
 
 window.angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', 'ui.bootstrap-slider'])
 .controller("Player", function($scope, $interval, $timeout, $location, $uibModal){
@@ -237,7 +237,7 @@ window.angular.module('org.nemanjan00.musictime.controllers', ['ui.bootstrap', '
 
 		mySong = soundManager.createSound({
 			id: "song"+id,
-			url: 'http://localhost:8080/'+$scope.songs[id].id
+			url: 'http://localhost:8086/'+$scope.songs[id].id
 		});
 
 		mySong.play({onfinish:$scope.next});
