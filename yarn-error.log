@@ -15,8 +15,8 @@ Platform:
 
 npm manifest: 
   {
-    "name": "electron",
-    "version": "0.2.0",
+    "name": "musictime",
+    "version": "1.3.4",
     "devDependencies": {
       "grunt": "*",
       "grunt-contrib-concat": "*",
@@ -1215,7 +1215,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/electron: You do not have permission to publish "electron". Are you logged in as the correct user?
+  Error: https://registry.yarnpkg.com/musictime: You do not have permission to publish "musictime". Are you logged in as the correct user?
       at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:62098:18)
       at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:123085:22)
       at Request.emit (events.js:160:13)
