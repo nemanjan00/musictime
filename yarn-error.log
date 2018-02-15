@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "electron",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "devDependencies": {
       "grunt": "*",
       "grunt-contrib-concat": "*",
@@ -1215,14 +1215,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:121045:13)
-      at Interface.emit (events.js:160:13)
-      at Interface._ttyWrite (readline.js:785:16)
-      at ReadStream.onkeypress (readline.js:165:10)
-      at ReadStream.emit (events.js:160:13)
-      at emitKeys (internal/readline.js:420:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (readline.js:1021:36)
-      at ReadStream.emit (events.js:160:13)
-      at addChunk (_stream_readable.js:269:12)
+  Error: https://registry.yarnpkg.com/electron: You do not have permission to publish "electron". Are you logged in as the correct user?
+      at Request.params.callback [as _callback] (/usr/lib/node_modules/yarn/lib/cli.js:62098:18)
+      at Request.self.callback (/usr/lib/node_modules/yarn/lib/cli.js:123085:22)
+      at Request.emit (events.js:160:13)
+      at Request.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:124068:10)
+      at Request.emit (events.js:160:13)
+      at Gunzip.<anonymous> (/usr/lib/node_modules/yarn/lib/cli.js:123988:12)
+      at Object.onceWrapper (events.js:255:19)
+      at Gunzip.emit (events.js:165:20)
+      at endReadableNT (_stream_readable.js:1101:12)
+      at process._tickCallback (internal/process/next_tick.js:152:19)
