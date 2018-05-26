@@ -9,6 +9,6 @@
     "grunt-contrib-watch": "*"
   },
   "dependencies": {
-    "grunt-contrib-less": "^1.1.0"
+    "grunt-contrib-less": "^2.0.0"
   }
 }
