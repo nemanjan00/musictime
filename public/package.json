@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "main": "main.js",
   "dependencies": {
-    "angular": "^1.5.6",
+    "angular": "^1.8.0",
     "bootstrap-slider": "^7.1.0",
     "pump": "^1.0.1",
     "range-parser": "^1.2.0",
