@@ -4,11 +4,17 @@
   "devDependencies": {
     "grunt": "*",
     "grunt-contrib-concat": "*",
-    "grunt-contrib-less": "*",
+    "grunt-contrib-less": "2.0.0",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*"
   },
   "dependencies": {
-    "grunt-contrib-less": "^1.1.0"
-  }
+    "grunt-contrib-less": "^2.0.0",
+    "@snyk/protect": "latest"
+  },
+  "scripts": {
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
+  },
+  "snyk": true
 }

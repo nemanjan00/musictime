@@ -1,0 +1,15 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:extend:20180424':
+    - grunt-contrib-less > less > request > extend:
+        patched: '2023-08-31T16:32:20.640Z'
+        id: 'npm:extend:20180424'
+        path: grunt-contrib-less > less > request > extend
+  'npm:stringstream:20180511':
+    - grunt-contrib-less > less > request > stringstream:
+        patched: '2023-08-31T16:32:20.640Z'
+        id: 'npm:stringstream:20180511'
+        path: grunt-contrib-less > less > request > stringstream
